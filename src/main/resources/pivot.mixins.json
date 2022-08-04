@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "committee.nova.pivot.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MixinPainting"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "pivot.mixin-refmap.json",
+  "minVersion": "0.8"
+}
