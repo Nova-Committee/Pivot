@@ -25,5 +25,25 @@ public class ArithmeticSeq {
     public int getEnd() {
         return end;
     }
+
+    public ArithmeticSeq reverse() {
+        return new ArithmeticSeq(end, start);
+    }
+
+    public ArithmeticSeq offset(int lOffset, int rOffset) {
+        return new ArithmeticSeq(start + lOffset, end + rOffset);
+    }
+
+    public ArithmeticSeq offset(int ofs) {
+        return offset(ofs, ofs);
+    }
+
+    public ArithmeticSeq lOffset(int ofs) {
+        return offset(ofs, 0);
+    }
+
+    public ArithmeticSeq rOffset(int ofs) {
+        return offset(0, ofs);
+    }
 }
 
