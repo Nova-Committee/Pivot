@@ -16,7 +16,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 version = "${version}"
 group = 'committee.nova.pivot'
-archivesBaseName = 'Pivot-Forge'
+archivesBaseName = 'Pivot-Forge-1.18.2'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
