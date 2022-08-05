@@ -14,5 +14,4 @@ public class Pivot {
     public Pivot() {
         MinecraftForge.EVENT_BUS.register(this);
     }
-
 }
