@@ -1,5 +1,7 @@
 package committee.nova.pivot.util.fp;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.function.IntConsumer;
 
 public class For {
@@ -13,7 +15,7 @@ public class For {
      * @param seq The arithmetic sequence to be used
      * @return A new "For" of the arithmetic sequence in
      */
-    public static For in(ArithmeticSeq seq) {
+    public static @NotNull For in(ArithmeticSeq seq) {
         return new For(seq);
     }
 
@@ -24,7 +26,7 @@ public class For {
      * @param end   The end number of the arithmetic sequence
      * @return A new "For" of a corresponding arithmetic sequence
      */
-    public static For to(int start, int end) {
+    public static @NotNull For to(int start, int end) {
         return in(ArithmeticSeq.to(start, end));
     }
 
@@ -35,7 +37,7 @@ public class For {
      * @param end   The end number of the arithmetic sequence(not included in)
      * @return A new "For" of a corresponding arithmetic sequence
      */
-    public static For until(int start, int end) {
+    public static @NotNull For until(int start, int end) {
         return in(ArithmeticSeq.until(start, end));
     }
 
