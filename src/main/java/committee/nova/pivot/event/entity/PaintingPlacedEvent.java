@@ -9,12 +9,12 @@ import net.minecraft.world.level.Level;
 
 /**
  * Callback for placing a painting.<p>
- * Called before a painting is placed.<p>
+ * Called before a painting is placed.
  */
 public class PaintingPlacedEvent {
 
     /**
-     * Setting the variant of this painting.<p>
+     * Setting the variant of this painting.
      */
     public static Event<SetPaintingVariant> SET_VARIANT = EventFactory.createArrayBacked(SetPaintingVariant.class,
             (listeners) -> (level, motive, direction, isClientSide) -> {
@@ -26,7 +26,7 @@ public class PaintingPlacedEvent {
             });
 
     /**
-     * Setting the direction of this painting.<p>
+     * Setting the direction of this painting.
      */
     public static Event<SetPaintingDirection> SET_DIRECTION = EventFactory.createArrayBacked(SetPaintingDirection.class,
             (listeners) -> (level, motive, direction, isClientSide) -> {
