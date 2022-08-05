@@ -64,7 +64,7 @@ public class For {
      * @param func The function to run
      */
     public void run(Runnable func) {
-        final int interval = Math.abs(seq.getStart() - seq.getEnd());
-        for (int i = 0; i <= interval; i++) func.run();
+        final int size = seq.getSize();
+        for (int i = 0; i < size; i++) func.run();
     }
 }

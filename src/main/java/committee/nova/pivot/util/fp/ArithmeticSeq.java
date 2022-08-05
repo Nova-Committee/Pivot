@@ -26,6 +26,14 @@ public class ArithmeticSeq {
         return end;
     }
 
+    public int getInterval() {
+        return Math.abs(start - end);
+    }
+
+    public int getSize() {
+        return getInterval() + 1;
+    }
+
     public ArithmeticSeq reverse() {
         return new ArithmeticSeq(end, start);
     }
