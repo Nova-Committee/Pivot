@@ -1,21 +1,17 @@
 package committee.nova.pivot.event.entity.living;
 
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
-import net.minecraftforge.eventbus.api.Event;
 
-public class LivingChangeSprintingStatusEvent extends Event {
-    private final LivingEntity entity;
+public class LivingChangeSprintingStatusEvent extends LivingEvent {
     private final boolean isClientSide;
 
     private LivingChangeSprintingStatusEvent(LivingEntity entity) {
-        this.entity = entity;
+        super(entity);
         this.isClientSide = entity.level.isClientSide;
     }
 
-    public LivingEntity getEntity() {
-        return entity;
-    }
 
     public boolean isClientSide() {
         return isClientSide;
