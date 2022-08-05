@@ -1,44 +1,47 @@
 package committee.nova.pivot.event.entity;
 
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.decoration.Motive;
+import net.minecraft.core.Holder;
+import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.eventbus.api.Event;
 
-public class PaintingPlacedEvent extends Event {
-    private final Level level;
-    private Motive motive;
-    private Direction direction;
-    private final boolean isClientSide;
+/**
+ * Callback for placing a painting.<p>
+ * Called before a painting is placed.<p>
+ */
+public class PaintingPlacedEvent {
 
-    public PaintingPlacedEvent(Level level, Motive motive, Direction direction, boolean isClientSide) {
-        this.level = level;
-        this.motive = motive;
-        this.direction = direction;
-        this.isClientSide = isClientSide;
+    /**
+     * Setting the variant of this painting.<p>
+     */
+    public static Event<SetPaintingVariant> SET_VARIANT = EventFactory.createArrayBacked(SetPaintingVariant.class,
+            (listeners) -> (level, motive, direction, isClientSide) -> {
+                for (SetPaintingVariant listener : listeners) {
+                    Holder<PaintingVariant> variant = listener.set(level, motive, direction, isClientSide);
+                    if (variant != null) return variant;
+                }
+                return motive;
+            });
+
+    /**
+     * Setting the direction of this painting.<p>
+     */
+    public static Event<SetPaintingDirection> SET_DIRECTION = EventFactory.createArrayBacked(SetPaintingDirection.class,
+            (listeners) -> (level, motive, direction, isClientSide) -> {
+                for (SetPaintingDirection listener : listeners) {
+                    Direction dir = listener.set(level, motive, direction, isClientSide);
+                    if (dir != null) return dir;
+                }
+                return direction;
+            });
+
+    public interface SetPaintingVariant {
+        Holder<PaintingVariant> set(Level level, Holder<PaintingVariant> motive, Direction direction, boolean isClientSide);
     }
 
-    public Level getLevel() {
-        return level;
-    }
-
-    public Motive getMotive() {
-        return motive;
-    }
-
-    public Direction getDirection() {
-        return direction;
-    }
-
-    public boolean isClientSide() {
-        return isClientSide;
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
-
-    public void setMotive(Motive motive) {
-        this.motive = motive;
+    public interface SetPaintingDirection {
+        Direction set(Level level, Holder<PaintingVariant> motive, Direction direction, boolean isClientSide);
     }
 }
