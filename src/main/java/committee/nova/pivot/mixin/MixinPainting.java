@@ -28,11 +28,11 @@ public abstract class MixinPainting extends HangingEntity {
     @Inject(method = "<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)V",
             at = @At("TAIL"))
     public void onInit(Level level, BlockPos pos, Direction direction, CallbackInfo ci) {
-        final var oldMotive = motive;
-        final var placeEvent = new PaintingPlacedEvent(level, motive, direction, level.isClientSide);
+        final Motive oldMotive = motive;
+        final PaintingPlacedEvent placeEvent = new PaintingPlacedEvent(level, motive, direction, level.isClientSide);
         MinecraftForge.EVENT_BUS.post(placeEvent);
         motive = placeEvent.getMotive();
-        final var newDirection = placeEvent.getDirection();
+        final Direction newDirection = placeEvent.getDirection();
         setDirection(newDirection);
         if (this.survives()) return;
         Pivot.LOGGER.warn("Painting motive/direction replacement failed and skipped!");

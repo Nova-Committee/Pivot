@@ -21,8 +21,8 @@ public abstract class MixinItemStack {
     @Inject(method = "inventoryTick", at = @At("TAIL"))
     public void onInventoryTick(Level level, Entity entity, int slot, boolean isSelected, CallbackInfo ci) {
         if (level.isClientSide) return;
-        final var tag = getOrCreateTag();
-        final var wasSelected = tag.getBoolean(TagStringReference.WAS_SELECTED.name);
+        final CompoundTag tag = getOrCreateTag();
+        final boolean wasSelected = tag.getBoolean(TagStringReference.WAS_SELECTED.name);
         if (wasSelected == isSelected) return;
         MinecraftForge.EVENT_BUS.post(new ItemStackSelectionChangedEvent(entity, (ItemStack) (Object) this, wasSelected, slot));
         tag.putBoolean(TagStringReference.WAS_SELECTED.name, isSelected);
