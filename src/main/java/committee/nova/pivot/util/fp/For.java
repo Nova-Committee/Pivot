@@ -58,6 +58,10 @@ public class For {
         }
     }
 
+    public void exploit(IntConsumer func) {
+        exec(func);
+    }
+
     /**
      * Simply run the function multiple times
      *
