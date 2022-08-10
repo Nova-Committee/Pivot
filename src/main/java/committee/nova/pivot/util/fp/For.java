@@ -44,7 +44,7 @@ public class For {
      *
      * @param func The function to be applied
      */
-    public void exploit(IntConsumer func) {
+    public void exec(IntConsumer func) {
         final int start = seq.getStart();
         final int end = seq.getEnd();
         if (start > end) {
