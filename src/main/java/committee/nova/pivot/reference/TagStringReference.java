@@ -1,7 +1,7 @@
 package committee.nova.pivot.reference;
 
 public enum TagStringReference {
-    WAS_SELECTED("pivot_was_selected");
+    SELECTED_SLOT("pivot_selected_slot");
 
     TagStringReference(String name) {
         this.name = name;

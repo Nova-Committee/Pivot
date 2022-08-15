@@ -1,39 +1,41 @@
 package committee.nova.pivot.event.item;
 
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.Event;
 
 public class ItemStackSelectionChangedEvent extends Event {
-    private final Entity owner;
-    private final ItemStack stack;
-    private final boolean wasSelected;
-    private final int slot;
+    private final Player owner;
+    private final int currentSlot;
+    private final int pastSlot;
+    private final ItemStack currentSelected;
+    private final ItemStack pastSelected;
 
-    public ItemStackSelectionChangedEvent(Entity owner, ItemStack stack, boolean wasSelected, int slot) {
+    public ItemStackSelectionChangedEvent(Player owner, ItemStack currentSelected, ItemStack pastSelected, int currentSlot, int pastSlot) {
         this.owner = owner;
-        this.stack = stack;
-        this.wasSelected = wasSelected;
-        this.slot = slot;
+        this.currentSelected = currentSelected;
+        this.pastSelected = pastSelected;
+        this.currentSlot = currentSlot;
+        this.pastSlot = pastSlot;
     }
 
-    public Entity getOwner() {
+    public Player getOwner() {
         return owner;
     }
 
-    public ItemStack getStack() {
-        return stack;
+    public ItemStack getCurrentStack() {
+        return currentSelected;
     }
 
-    public boolean wasSelected() {
-        return wasSelected;
+    public ItemStack getPastStack() {
+        return pastSelected;
     }
 
-    public boolean isSelected() {
-        return !wasSelected;
+    public int getCurrentSlot() {
+        return currentSlot;
     }
 
-    public int getSlot() {
-        return slot;
+    public int getPastSlot() {
+        return pastSlot;
     }
 }
