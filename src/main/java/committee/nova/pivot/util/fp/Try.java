@@ -26,4 +26,14 @@ public class Try<T> {
         }
         return v;
     }
+
+    public T orElseGet(Supplier<T> defaultValueSup) {
+        T v;
+        try {
+            v = get();
+        } catch (Exception e) {
+            v = defaultValueSup.get();
+        }
+        return v;
+    }
 }
